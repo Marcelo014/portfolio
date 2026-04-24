@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  --background: #09090b;
+  --background: #141414;
   --foreground: #ededed;
   --accent: #15803d;
   --accent-hover: #22c55e;
@@ -15,7 +15,24 @@
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
   font-family: var(--font-space-grotesk), Arial, sans-serif;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Cpolygon points='12,2 15,8 9,8' fill='%23151f18'/%3E%3Cpolygon points='9,8 12,14 6,14' fill='%23151f18'/%3E%3Cpolygon points='15,8 18,14 12,14' fill='%23151f18'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 24px 24px;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #141414;
+}
+::-webkit-scrollbar-thumb {
+  background: #15803d;
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #22c55e;
 }

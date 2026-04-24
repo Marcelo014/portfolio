@@ -38,7 +38,10 @@ export default function Hero() {
         <button className="bg-accent hover:bg-accent-hover text-white font-medium px-6 py-3 rounded-full transition-colors">
           See my work
         </button>
-        <button className="border border-zinc-700 hover:border-zinc-400 text-foreground font-medium px-6 py-3 rounded-full transition-colors">
+        <button
+          style={{backgroundColor: '#09090b'}}
+          className="border border-zinc-700 hover:border-zinc-400 text-foreground font-medium px-6 py-3 rounded-full transition-colors"
+        >
           Download resume
         </button>
       </motion.div>

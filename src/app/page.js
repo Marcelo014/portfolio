@@ -9,7 +9,7 @@ import FadeInSection from "./components/FadeInSection";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-background text-foreground">
+<main className="min-h-screen text-foreground">
       <Navbar />
       <Hero />
       <FadeInSection><About /></FadeInSection>
