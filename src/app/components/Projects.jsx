@@ -1,3 +1,7 @@
+"use client";
+
+import { motion } from "framer-motion";
+
 const projects = [
   {
     title: "Portfolio Site",
@@ -33,8 +37,10 @@ export default function Projects() {
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
         {projects.map((project) => (
-          <div
+          <motion.div
             key={project.title}
+            whileHover={{ y: -6 }}
+            transition={{ duration: 0.2 }}
             className="border border-zinc-800 rounded-2xl p-6 flex flex-col gap-4 hover:border-accent transition-colors"
           >
             <div className="flex items-center justify-between">
@@ -51,7 +57,7 @@ export default function Projects() {
                 </span>
               ))}
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
     </section>
