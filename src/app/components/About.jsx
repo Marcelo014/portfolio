@@ -6,13 +6,9 @@ export default function About() {
       </h2>
       <div className="flex flex-col gap-6 text-zinc-400 text-lg leading-relaxed text-center">
         <p>
-          I'm a Computer Science senior with a passion for building things on the web. 
-          I love combining clean design with solid engineering to create experiences 
-          people actually enjoy using.
-        </p>
+I’m a senior Computer Science student with a strong interest in front-end development and a growing focus on full-stack applications. I enjoy building clean, intuitive user experiences while understanding how everything works behind the scenes. Lately, I’ve been exploring areas like game design and interactive systems, driven by curiosity about how engaging digital experiences are created.        </p>
         <p>
-          When I'm not coding I'm probably playing video games, which is also why 
-          my portfolio looks like this.
+          My current projects reflect that curiosity, including a paper trading platform with an AI-based learning tool to help users better understand the stock market, as well as a browser-based game. I’m also planning a full-stack web application to continue expanding my technical range. Overall, I’m motivated by the process of turning ideas into functional, well-designed products.
         </p>
       </div>
     </section>

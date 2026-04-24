@@ -42,7 +42,7 @@ export default function Projects() {
             whileHover={{ y: -6 }}
             transition={{ duration: 0.2 }}
             style={{backgroundColor: '#09090b'}}
-className="glow-target border border-zinc-800 rounded-2xl p-6 flex flex-col gap-4 hover:border-accent transition-colors cursor-pointer"
+            className="glow-target border border-zinc-800 rounded-2xl p-6 flex flex-col gap-4 hover:border-accent transition-colors cursor-pointer"
           >
             <div className="flex items-center justify-between">
               <h3 className="text-lg font-semibold">{project.title}</h3>
