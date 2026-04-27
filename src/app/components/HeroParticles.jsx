@@ -99,14 +99,15 @@ export default function HeroParticles() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       particles.forEach((p) => {
+        // Gentle mouse attraction
         if (mouse.x && mouse.y) {
           const dx = mouse.x - p.x;
           const dy = mouse.y - p.y;
           const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 180) {
-            p.vx += dx * 0.00015;
-            p.vy += dy * 0.00015;
-            p.brightness = Math.max(p.brightness, 1 - dist / 180);
+          if (dist < 200) {
+            p.vx += dx * 0.00008;
+            p.vy += dy * 0.00008;
+            p.brightness = Math.max(p.brightness, 1 - dist / 200);
           } else {
             p.brightness *= 0.95;
           }
@@ -114,8 +115,22 @@ export default function HeroParticles() {
           p.brightness *= 0.95;
         }
 
+        // Repel from nearby particles to prevent clumping
+        particles.forEach((p2) => {
+          if (p === p2) return;
+          const dx = p.x - p2.x;
+          const dy = p.y - p2.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 40 && dist > 0) {
+            const force = (40 - dist) / 40 * 0.03;
+            p.vx += (dx / dist) * force;
+            p.vy += (dy / dist) * force;
+          }
+        });
+
+        // Speed cap
         const speed = Math.sqrt(p.vx * p.vx + p.vy * p.vy);
-        if (speed > 1) { p.vx *= 0.95; p.vy *= 0.95; }
+        if (speed > 1.2) { p.vx *= 0.95; p.vy *= 0.95; }
 
         p.x += p.vx;
         p.y += p.vy;
@@ -144,11 +159,11 @@ export default function HeroParticles() {
           const dx = p.x - mouse.x;
           const dy = p.y - mouse.y;
           const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 180) {
+          if (dist < 200) {
             ctx.beginPath();
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(mouse.x, mouse.y);
-            ctx.strokeStyle = `rgba(134, 239, 172, ${0.35 * (1 - dist / 180)})`;
+            ctx.strokeStyle = `rgba(134, 239, 172, ${0.35 * (1 - dist / 200)})`;
             ctx.lineWidth = 0.8;
             ctx.stroke();
           }
