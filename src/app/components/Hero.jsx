@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
+import HeroParticles from "./HeroParticles";
 
 const phrases = [
   "Computer Science student building cool things on the web.",
@@ -38,11 +39,12 @@ export default function Hero() {
 
   return (
     <section id="hero-section" className="relative flex flex-col items-center justify-center min-h-screen text-center px-4">
+      <HeroParticles />
       <motion.p
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="text-accent text-sm font-medium tracking-widest uppercase mb-4"
+        className="relative z-10 text-accent text-sm font-medium tracking-widest uppercase mb-4"
       >
         Welcome to my portfolio
       </motion.p>
@@ -50,7 +52,7 @@ export default function Hero() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.2 }}
-        className="text-6xl font-bold mb-4 tracking-tight text-foreground"
+        className="relative z-10 text-6xl font-bold mb-4 tracking-tight text-foreground"
       >
         Hi, I'm Marcelo
       </motion.h1>
@@ -58,7 +60,7 @@ export default function Hero() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.4 }}
-        className="text-zinc-400 text-xl mb-8 max-w-xl min-h-[2rem]"
+        className="relative z-10 text-zinc-400 text-xl mb-8 max-w-xl min-h-[2rem]"
       >
         {text}<span className="animate-pulse text-accent">|</span>
       </motion.p>
@@ -66,18 +68,12 @@ export default function Hero() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.6 }}
-        className="flex gap-4"
+        className="relative z-10 flex gap-4"
       >
         <a href="#projects" className="bg-accent hover:bg-accent-hover text-white font-medium px-6 py-3 rounded-full transition-colors">
-  See my work
-</a>
-        
-         <a href="https://docs.google.com/document/d/1PYYj6k4m42hS5ZoIy5oVMwZgIYxiamCVOWhIPkJBRUc/edit?tab=t.0"
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{backgroundColor: '#09090b'}}
-          className="border border-zinc-700 hover:border-zinc-400 text-foreground font-medium px-6 py-3 rounded-full transition-colors"
-        >
+          See my work
+        </a>
+        <a href="https://docs.google.com/document/d/1PYYj6k4m42hS5ZoIy5oVMwZgIYxiamCVOWhIPkJBRUc/edit?tab=t.0" target="_blank" rel="noopener noreferrer" style={{backgroundColor: '#09090b'}} className="border border-zinc-700 hover:border-zinc-400 text-foreground font-medium px-6 py-3 rounded-full transition-colors">
           See my resume
         </a>
       </motion.div>
