@@ -38,7 +38,7 @@ export default function Hero() {
   }, [charIndex, deleting, phraseIndex]);
 
   return (
-    <section id="hero-section" className="relative flex flex-col items-center justify-center min-h-screen text-center px-4">
+    <section id="hero-section" style={{backgroundColor: '#141414'}} className="relative flex flex-col items-center justify-center min-h-screen text-center px-4">
       <HeroParticles />
       <motion.p
         initial={{ opacity: 0, y: 20 }}

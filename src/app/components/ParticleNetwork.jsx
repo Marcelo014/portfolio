@@ -2,6 +2,8 @@
 
 import { useEffect, useRef } from "react";
 
+const GRID_SIZE = 40;
+
 export default function ParticleNetwork() {
   const canvasRef = useRef(null);
 
@@ -21,15 +23,6 @@ export default function ParticleNetwork() {
     window.addEventListener("resize", resize);
     window.addEventListener("scroll", () => { scrollY = window.scrollY; });
 
-    const dots = Array.from({ length: 60 }, () => ({
-      // Store as page coordinates
-      pageX: Math.random() * window.innerWidth,
-      pageY: Math.random() * document.body.scrollHeight,
-      vx: (Math.random() - 0.5) * 0.4,
-      vy: (Math.random() - 0.5) * 0.4,
-      radius: Math.random() * 1.5 + 0.5,
-    }));
-
     window.addEventListener("mousemove", (e) => {
       mouse.x = e.clientX;
       mouse.y = e.clientY;
@@ -42,67 +35,40 @@ export default function ParticleNetwork() {
 
     const draw = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      const hero = document.getElementById("hero-section");
-      const heroBottom = hero ? hero.getBoundingClientRect().bottom + scrollY : 0;
 
-      dots.forEach((p) => {
-        // Keep dots out of hero page area
-        if (p.pageY < heroBottom) {
-          p.pageY = heroBottom + 10;
-          p.vy = Math.abs(p.vy);
-        }
+      const heroEl = document.getElementById("hero-section");
+      const heroBottom = heroEl ? heroEl.getBoundingClientRect().bottom + scrollY : 0;
+      const cols = Math.ceil(canvas.width / GRID_SIZE) + 1;
+      const rows = Math.ceil(canvas.height / GRID_SIZE) + 1;
+      const offsetY = scrollY % GRID_SIZE;
 
-        p.pageX += p.vx;
-        p.pageY += p.vy;
+      for (let j = 0; j < rows; j++) {
+        const viewY = j * GRID_SIZE - offsetY;
+        const pageY = viewY + scrollY;
+        if (pageY < heroBottom) continue;
 
-        if (p.pageX < 0 || p.pageX > window.innerWidth) p.vx *= -1;
-        if (p.pageY > document.body.scrollHeight) p.vy *= -1;
-        if (p.pageY < heroBottom) { p.pageY = heroBottom; p.vy = Math.abs(p.vy); }
+        for (let i = 0; i < cols; i++) {
+          const x = i * GRID_SIZE;
+          const mouseInfluence = mouse.x && mouse.y && !inHero
+            ? Math.max(0, 1 - Math.sqrt(Math.pow(mouse.x - x, 2) + Math.pow(mouse.y - viewY, 2)) / 120)
+            : 0;
 
-        // Convert page coords to viewport coords for drawing
-        const vx = p.pageX;
-        const vy = p.pageY - scrollY;
-
-        // Only draw if visible in viewport
-        if (vy < -10 || vy > canvas.height + 10) return;
-
-        ctx.beginPath();
-        ctx.arc(vx, vy, p.radius, 0, Math.PI * 2);
-        ctx.fillStyle = "rgba(34, 197, 94, 0.25)";
-        ctx.fill();
-
-        dots.forEach((p2) => {
-          const vx2 = p2.pageX;
-          const vy2 = p2.pageY - scrollY;
-          if (vy2 < -10 || vy2 > canvas.height + 10) return;
-
-          const dx = vx - vx2;
-          const dy = vy - vy2;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 100 && dist > 0) {
+          if (mouseInfluence > 0) {
             ctx.beginPath();
-            ctx.moveTo(vx, vy);
-            ctx.lineTo(vx2, vy2);
-            ctx.strokeStyle = `rgba(34, 197, 94, ${0.1 * (1 - dist / 100)})`;
-            ctx.lineWidth = 0.4;
-            ctx.stroke();
-          }
-        });
-
-        if (mouse.x && mouse.y && !inHero) {
-          const dx = vx - mouse.x;
-          const dy = vy - mouse.y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 120) {
+            ctx.arc(x, viewY, 1.2 + mouseInfluence * 1.5, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(34, 197, 94, ${0.1 + mouseInfluence * 0.08})`;
+            ctx.shadowColor = "#22c55e";
+            ctx.shadowBlur = 2 * mouseInfluence;
+            ctx.fill();
+            ctx.shadowBlur = 0;
+          } else {
             ctx.beginPath();
-            ctx.moveTo(vx, vy);
-            ctx.lineTo(mouse.x, mouse.y);
-            ctx.strokeStyle = `rgba(34, 197, 94, ${0.2 * (1 - dist / 120)})`;
-            ctx.lineWidth = 0.6;
-            ctx.stroke();
+            ctx.arc(x, viewY, 1, 0, Math.PI * 2);
+            ctx.fillStyle = "rgba(34, 197, 94, 0.18)";
+            ctx.fill();
           }
         }
-      });
+      }
 
       animationId = requestAnimationFrame(draw);
     };
