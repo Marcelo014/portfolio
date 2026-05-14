@@ -2,8 +2,6 @@
 
 import { useEffect, useRef } from "react";
 
-const RUNES = ["ᚠ", "ᚢ", "ᚦ", "ᚨ", "ᚱ", "ᚲ", "ᚷ", "ᚹ", "ᚺ", "ᚾ", "ᛁ", "ᛃ", "ᛇ", "ᛈ", "ᛉ", "ᛊ", "ᛏ", "ᛒ", "ᛖ", "ᛗ", "ᛚ", "ᛜ", "ᛞ", "ᛟ"];
-
 const TECH_LOGOS = [
   "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
   "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
@@ -18,6 +16,8 @@ const TECH_LOGOS = [
   "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg",
   "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg",
   "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vercel/vercel-original.svg",
+  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/supabase/supabase-original.svg",
+  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg",
 ];
 
 const drawTriforce = (ctx, x, y, size, alpha) => {
@@ -70,17 +70,14 @@ export default function HeroParticles() {
 
     const particles = Array.from({ length: 80 }, () => {
       const rand = Math.random();
-      const isTech = rand < 0.35;
-      const isTriforce = rand >= 0.35 && rand < 0.40;
+      const isTriforce = rand < 0.01;
       return {
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
         vx: (Math.random() - 0.5) * 0.4,
         vy: (Math.random() - 0.5) * 0.4,
-        rune: RUNES[Math.floor(Math.random() * RUNES.length)],
-        isTech,
         isTriforce,
-        logoImg: isTech ? logoImages[Math.floor(Math.random() * logoImages.length)] : null,
+        logoImg: !isTriforce ? logoImages[Math.floor(Math.random() * logoImages.length)] : null,
         size: Math.random() * 10 + 10,
         rotation: Math.random() * Math.PI * 2,
         rotSpeed: (Math.random() - 0.5) * 0.01,
@@ -115,7 +112,7 @@ export default function HeroParticles() {
           p.brightness *= 0.95;
         }
 
-        // Repel from nearby particles to prevent clumping
+        // Repel from nearby particles
         particles.forEach((p2) => {
           if (p === p2) return;
           const dx = p.x - p2.x;
@@ -128,7 +125,6 @@ export default function HeroParticles() {
           }
         });
 
-        // Speed cap
         const speed = Math.sqrt(p.vx * p.vx + p.vy * p.vy);
         if (speed > 1.2) { p.vx *= 0.95; p.vy *= 0.95; }
 
@@ -178,7 +174,7 @@ export default function HeroParticles() {
         if (p.isTriforce) {
           ctx.restore();
           drawTriforce(ctx, p.x, p.y, p.size * 0.4, alpha);
-        } else if (p.isTech && p.logoImg && p.logoImg.complete) {
+        } else if (p.logoImg && p.logoImg.complete) {
           const s = p.size * 1.8;
           if (p.brightness > 0.1) {
             ctx.shadowColor = "#22c55e";
@@ -193,13 +189,6 @@ export default function HeroParticles() {
           ctx.globalAlpha = 1;
           ctx.restore();
         } else {
-          if (p.brightness > 0.1) {
-            ctx.shadowColor = "#22c55e";
-            ctx.shadowBlur = 15 * p.brightness;
-          }
-          ctx.font = `${p.size}px serif`;
-          ctx.fillStyle = `rgba(134, 239, 172, ${alpha})`;
-          ctx.fillText(p.rune, 0, 0);
           ctx.restore();
         }
       });

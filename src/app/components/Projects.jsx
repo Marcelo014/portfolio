@@ -5,27 +5,35 @@ import { motion } from "framer-motion";
 const projects = [
   {
     title: "Portfolio Site",
-    description: "This site — built with Next.js, Tailwind, and Framer Motion.",
-    status: "In Progress",
-    tags: ["Next.js", "Tailwind", "Framer Motion"],
+    description: "The site you're on now. Built using Next.js, Tailwind, Framer Motion, and Resend.",
+    status: "Live",
+    tags: ["Next.js", "Tailwind", "Framer Motion", "Resend"],
+    link: "#",
+    linkLabel: "This site",
   },
   {
-    title: "Data Dashboard",
-    description: "Interactive stock dashboard for beginner investors.",
+    title: "Meridian",
+    description: "Interactive stock dashboard for beginner investors with an AI teaching layer.",
     status: "Coming Soon",
-    tags: ["React", "Chart.js", "Polygon.io"],
+    tags: ["Next.js", "Supabase", "Anthropic API", "Alpaca"],
+    link: null,
+    linkLabel: null,
   },
   {
-    title: "Browser Game",
-    description: "A browser-based game built with Phaser.js or Canvas.",
+    title: "Cats vs Vacuums",
+    description: "A browser-based tower defense game built in Phaser.js with pixel art visuals.",
     status: "Coming Soon",
-    tags: ["JavaScript", "Phaser.js", "Canvas"],
+    tags: ["Phaser.js", "JavaScript", "Pixel Art"],
+    link: null,
+    linkLabel: null,
   },
   {
     title: "Full-Stack Web App",
-    description: "A full-stack app with auth, database, and real users.",
+    description: "A full-stack app with auth, database, and real users. Solving a real problem.",
     status: "Coming Soon",
     tags: ["Next.js", "Supabase", "Clerk"],
+    link: null,
+    linkLabel: null,
   },
 ];
 
@@ -51,12 +59,19 @@ export default function Projects() {
               </span>
             </div>
             <p className="text-zinc-400 text-sm leading-relaxed">{project.description}</p>
-            <div className="flex gap-2 flex-wrap">
-              {project.tags.map((tag) => (
-                <span key={tag} className="text-xs bg-zinc-800 text-zinc-300 px-2 py-1 rounded-md">
-                  {tag}
-                </span>
-              ))}
+            <div className="flex items-center justify-between">
+              <div className="flex gap-2 flex-wrap">
+                {project.tags.map((tag) => (
+                  <span key={tag} className="text-xs bg-zinc-800 text-zinc-300 px-2 py-1 rounded-md">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+              {project.link && (
+                <a href={project.link} className="text-xs text-accent hover:text-accent-hover transition-colors whitespace-nowrap ml-4">
+                  {project.linkLabel} &rarr;
+                </a>
+              )}
             </div>
           </motion.div>
         ))}

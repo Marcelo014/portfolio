@@ -12,9 +12,15 @@ const skills = [
     { name: "Tailwind CSS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" },
     { name: "Framer Motion", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/framermotion/framermotion-original.svg" },
   ]},
-  { category: "Backend", items: [
+  { category: "Backend & Database", items: [
     { name: "Node.js", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" },
     { name: "Express", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" },
+    { name: "Supabase", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/supabase/supabase-original.svg" },
+    { name: "PostgreSQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" },
+  ]},
+  { category: "Auth & AI", items: [
+    { name: "Clerk", icon: "https://avatars.githubusercontent.com/u/49538330?s=200&v=4" },
+{ name: "Anthropic API", icon: "https://avatars.githubusercontent.com/u/76263028?s=200&v=4" },
   ]},
   { category: "Tools", items: [
     { name: "Git", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" },
@@ -26,7 +32,7 @@ const skills = [
 
 export default function Skills() {
   return (
-    <section id="skills" className="flex flex-col items-center px-4 py-24 max-w-4xl mx-auto">
+    <section id="skills" className="flex flex-col items-center px-4 py-24 max-w-5xl mx-auto">
       <h2 className="text-3xl font-bold mb-12 text-center">
         My <span className="text-accent">Skills</span>
       </h2>
@@ -36,16 +42,16 @@ export default function Skills() {
             <h3 className="text-zinc-400 text-sm font-medium tracking-widest uppercase mb-4">
               {group.category}
             </h3>
-            <div className="flex flex-wrap gap-3">
+            <div className="flex flex-wrap gap-4">
               {group.items.map((skill) => (
-                <span
+                <div
                   key={skill.name}
-                  style={{backgroundColor: '#09090b'}}
-                  className="glow-target flex items-center gap-2 border border-zinc-700 text-foreground text-sm px-4 py-2 rounded-full hover:border-accent hover:text-accent transition-colors cursor-pointer"
+                  style={{backgroundColor: '#1c1c1c'}}
+                  className="glow-target flex flex-col items-center gap-2 border border-zinc-700 px-5 py-4 rounded-2xl hover:border-accent transition-colors cursor-pointer w-24"
                 >
-                  <img src={skill.icon} alt={skill.name} width={18} height={18} />
-                  {skill.name}
-                </span>
+                  <img src={skill.icon} alt={skill.name} width={36} height={36} />
+                  <span className="text-zinc-300 text-xs text-center leading-tight">{skill.name}</span>
+                </div>
               ))}
             </div>
           </div>

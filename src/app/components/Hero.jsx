@@ -5,9 +5,9 @@ import { useState, useEffect } from "react";
 import HeroParticles from "./HeroParticles";
 
 const phrases = [
-  "Computer Science student building cool things on the web.",
-  "Java developer learning the full stack.",
-  "Building my portfolio one project at a time.",
+  "CS Senior at FIU. Diving deep into full-stack development.",
+  "One project at a time. One skill at a time.",
+  "Building Meridian, with real-time stocks, paper trading, and an AI tutor.",
 ];
 
 export default function Hero() {
