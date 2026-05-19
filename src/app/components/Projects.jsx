@@ -16,7 +16,7 @@ const projects = [
     description: "Paper trading platform with real-time market data, AI-powered briefings, and an adaptive AI tutor that calibrates to your investing knowledge level.",
     status: "Live",
     tags: ["Next.js", "Clerk", "Anthropic API", "Alpaca"],
-    link: "https://meridian-q41d01mqd-marcelo014s-projects.vercel.app/",
+    link: "https://meridian-umber-one.vercel.app/",
     linkLabel: "Visit Meridian",
   },
   {
