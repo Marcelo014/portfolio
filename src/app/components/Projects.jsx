@@ -13,11 +13,11 @@ const projects = [
   },
   {
     title: "Meridian",
-    description: "Interactive stock dashboard for beginner investors with an AI teaching layer.",
-    status: "Coming Soon",
-    tags: ["Next.js", "Supabase", "Anthropic API", "Alpaca"],
-    link: null,
-    linkLabel: null,
+    description: "Paper trading platform with real-time market data, AI-powered briefings, and an adaptive AI tutor that calibrates to your investing knowledge level.",
+    status: "Live",
+    tags: ["Next.js", "Clerk", "Anthropic API", "Alpaca"],
+    link: "https://meridian-q41d01mqd-marcelo014s-projects.vercel.app/",
+    linkLabel: "Visit Meridian",
   },
   {
     title: "Cats vs Vacuums",
@@ -29,7 +29,7 @@ const projects = [
   },
   {
     title: "Full-Stack Web App",
-    description: "A full-stack app with auth, database, and real users. Solving a real problem.",
+    description: "A full-stack app tackling a different problem space than Meridian.",
     status: "Coming Soon",
     tags: ["Next.js", "Supabase", "Clerk"],
     link: null,

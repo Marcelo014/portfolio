@@ -18,6 +18,10 @@ const TECH_LOGOS = [
   "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vercel/vercel-original.svg",
   "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/supabase/supabase-original.svg",
   "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg",
+  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/framermotion/framermotion-original.svg",
+  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg",
+  "https://avatars.githubusercontent.com/u/49538330?s=200&v=4",
+  "https://avatars.githubusercontent.com/u/76263028?s=200&v=4",
 ];
 
 const drawTriforce = (ctx, x, y, size, alpha) => {
@@ -165,7 +169,7 @@ export default function HeroParticles() {
           }
         }
 
-        const alpha = 0.2 + p.brightness * 0.6;
+        const alpha = 0.3 + p.brightness * 0.6;
 
         ctx.save();
         ctx.translate(p.x, p.y);

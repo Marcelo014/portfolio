@@ -47,7 +47,7 @@ export default function Skills() {
                 <div
                   key={skill.name}
                   style={{backgroundColor: '#1c1c1c'}}
-                  className="glow-target flex flex-col items-center gap-2 border border-zinc-700 px-5 py-4 rounded-2xl hover:border-accent transition-colors cursor-pointer w-24"
+                  className="glow-target glow-dim flex flex-col items-center gap-2 border border-zinc-700 px-5 py-4 rounded-2xl hover:border-accent transition-colors cursor-pointer w-24"
                 >
                   <img src={skill.icon} alt={skill.name} width={36} height={36} />
                   <span className="text-zinc-300 text-xs text-center leading-tight">{skill.name}</span>

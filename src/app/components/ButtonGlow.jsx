@@ -16,8 +16,10 @@ export default function ButtonGlow() {
           Math.pow(e.clientX - nearestX, 2) + Math.pow(e.clientY - nearestY, 2)
         );
         const intensity = Math.max(0, 1 - distance / 120);
-        el.style.boxShadow = intensity > 0
-          ? `0 0 ${intensity * 20}px rgba(34, 197, 94, ${intensity * 0.6}), 0 4px 6px rgba(0,0,0,0.4)`
+        const dimFactor = el.classList.contains("glow-dim") ? 0.8 : 1;
+        const adjusted = intensity * dimFactor;
+        el.style.boxShadow = adjusted > 0
+          ? `0 0 ${adjusted * 20}px rgba(34, 197, 94, ${adjusted * 0.6}), 0 4px 6px rgba(0,0,0,0.4)`
           : "";
       });
 
